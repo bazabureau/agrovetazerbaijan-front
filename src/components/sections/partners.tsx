@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { partners } from "@/lib/partners";
 
 export function PartnersSection() {
@@ -13,10 +15,24 @@ export function PartnersSection() {
       <div className="mt-10 grid gap-3 rounded-3xl border border-white/20 bg-white/75 p-6 text-sm text-[var(--brand-strong)] shadow-lg shadow-slate-900/10 backdrop-blur-md sm:grid-cols-2 lg:grid-cols-3">
         {partners.map((partner) => (
           <div
-            key={partner}
+            key={partner.name}
             className="rounded-2xl border border-transparent px-4 py-3 transition hover:border-[var(--brand)]/40 hover:bg-[var(--brand-soft)]"
           >
-            {partner}
+            {partner.logo ? (
+              <div className="flex items-center justify-center">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={160}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                  loading="lazy"
+                  unoptimized
+                />
+              </div>
+            ) : (
+              <span className="text-sm font-medium">{partner.name}</span>
+            )}
           </div>
         ))}
       </div>
