@@ -88,6 +88,11 @@ export async function fetchProducts(params: {
   };
 }
 
+export async function fetchProductBySlug(slug: string): Promise<Product | null> {
+  const payload = await safeFetch<Product>(`/api/catalog/products/${slug}/`);
+  return payload ?? null;
+}
+
 export async function requestRecommendations(body: {
   symptoms: string[];
   animal?: string;
